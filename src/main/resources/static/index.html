@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Web com Java e Spring Boot</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        /* Seus estilos CSS personalizados */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f8f9fa; /* Fundo mais claro do Bootstrap */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Remova ou ajuste os estilos que o Bootstrap já cobre */
+        h1 {
+            color: #212529; /* Cor de texto padrão do Bootstrap */
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        p {
+            color: #495057; /* Cor de texto secundária do Bootstrap */
+            text-align: justify;
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Estilos da Calculadora - alguns serão ajustados com classes Bootstrap */
+        .calculadora {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* REMOVA ESTA LINHA: width: 300px; */
+            max-width: 320px; /* Define uma largura máxima para que não fique muito grande em telas grandes */
+            width: 90%; /* A calculadora ocupará 90% da largura da tela, mas não mais que 320px */
+            margin-top: 20px;
+            }
+        .display {
+            width: 100%; /* O Bootstrap fará o padding */
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 2em;
+            text-align: right;
+            border: 1px solid #ced4da; /* Borda mais neutra do Bootstrap */
+            border-radius: 0.25rem; /* Borda padrão do Bootstrap */
+            box-sizing: border-box;
+        }
+        .botoes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        /* Os botões serão estilizados principalmente pelas classes Bootstrap */
+        .botoes button {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            border: none; /* O Bootstrap cuida das bordas */
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        /* Manter cores personalizadas se desejar, ou usar as do Bootstrap */
+        .botoes .operador {
+            background-color: #ff9800; /* Laranja */
+            color: white;
+        }
+        .botoes .operador:hover {
+            background-color: #e68900;
+        }
+        .botoes .igual {
+            background-color: #28a745; /* Verde do Bootstrap (success) */
+            color: white;
+            grid-column: span 2;
+        }
+        .botoes .igual:hover {
+            background-color: #218838;
+        }
+        .botoes .clear {
+            background-color: #dc3545; /* Vermelho do Bootstrap (danger) */
+            color: white;
+        }
+        .botoes .clear:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center py-4">
+        <h1 class="mb-3">Construindo uma Calculadora Web com Java e Spring Boot</h1>
+        <p class="lead mb-4">
+            Este projeto demonstra a criação de uma calculadora interativa baseada na web, combinando um frontend intuitivo com um backend robusto em Java. A interface da calculadora é desenvolvida utilizando **HTML** e **CSS** para a estrutura e o estilo visual dos botões e do display. A lógica de interação inicial, como a captura dos números e operações digitadas, é gerenciada por **JavaScript** no navegador do usuário. No entanto, o verdadeiro poder de processamento reside no backend Java.
+        </p>
+        <p class="lead mb-4">
+            A comunicação entre o navegador e o servidor é estabelecida através de um **endpoint REST** implementado com **Spring Boot**. Quando o usuário clica no botão de igual (`=`), a expressão matemática é enviada do frontend para o backend Java via uma requisição HTTP **POST**. O servidor Spring Boot recebe essa expressão, realiza o cálculo utilizando lógica Java pura e, então, envia o resultado de volta para o navegador, que o exibe na tela da calculadora. Essa arquitetura separa claramente a apresentação (frontend) da lógica de negócios (backend), permitindo que cada parte seja desenvolvida e escalada de forma independente.
+        </p>
+
+        <div class="d-flex justify-content-center"> <div class="card calculadora"> <div class="card-body">
+                    <input type="text" class="form-control display mb-3" id="display" readonly>
+                    <div class="botoes">
+                        <button class="btn btn-secondary" onclick="appendToDisplay('7')">7</button>
+                        <button class="btn btn-secondary" onclick="appendToDisplay('8')">8</button>
+                        <button class="btn btn-secondary" onclick="appendToDisplay('9')">9</button>
+                        <button class="btn btn-warning operador" onclick="appendToDisplay('+')">+</button>
+
+                        <button class="btn btn-secondary" onclick="appendToDisplay('4')">4</button>
+                        <button class="btn btn-secondary" onclick="appendToDisplay('5')">5</button>
+                        <button class="btn btn-secondary" onclick="appendToDisplay('6')">6</button>
+                        <button class="btn btn-warning operador" onclick="appendToDisplay('-')">-</button>
+
+                        <button class="btn btn-secondary" onclick="appendToDisplay('1')">1</button>
+                        <button class="btn btn-secondary" onclick="appendToDisplay('2')">2</button>
+                        <button class="btn btn-secondary" onclick="appendToDisplay('3')">3</button>
+                        <button class="btn btn-warning operador" onclick="appendToDisplay('*')">*</button>
+
+                        <button class="btn btn-secondary" onclick="appendToDisplay('0')">0</button>
+                        <button class="btn btn-secondary" onclick="appendToDisplay('.')">.</button>
+                        <button class="btn btn-success igual" onclick="calculate()">=</button>
+                        <button class="btn btn-warning operador" onclick="appendToDisplay('/')">/</button>
+
+                        <button class="btn btn-danger clear" onclick="clearDisplay()">C</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+    const display = document.getElementById('display');
+    let currentInput = '';
+    let lastResult = null;
+
+    function appendToDisplay(value) {
+        currentInput += value;
+        display.value = currentInput;
+    }
+
+    function clearDisplay() {
+        currentInput = '';
+        lastResult = null;
+        display.value = '';
+    }
+
+    async function calculate() {
+        if (currentInput === '') return;
+
+        try {
+            const response = await fetch('/api/calcular', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ expressao: currentInput })
+            });
+
+            // O status HTTP 200 OK significa que a requisição chegou no backend
+            // Mas o backend pode ter retornado um erro de cálculo via JSON.
+            const data = await response.json();
+
+            if (data.erro) { // Verifica se há uma mensagem de erro no JSON de resposta
+                display.value = 'Erro: ' + data.erro; // Exibe o erro do backend
+                currentInput = ''; // Limpa a entrada após o erro
+            } else {
+                display.value = data.resultado;
+                currentInput = data.resultado.toString();
+            }
+
+        } catch (error) {
+            // Este catch lida com erros de rede ou de parsing do JSON, não erros do backend.
+            display.value = 'Erro de comunicação';
+            currentInput = '';
+            console.error('Erro na comunicação com a API:', error);
+            alert('Ocorreu um erro de comunicação: ' + error.message);
+        }
+    }
+</script>
+</body>
+</html>
