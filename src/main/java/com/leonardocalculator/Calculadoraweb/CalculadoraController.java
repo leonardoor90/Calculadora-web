@@ -1,4 +1,4 @@
-package com.leonardocalculator; // Ajuste o pacote conforme o seu projeto
+package com.leonardocalculator.Calculadoraweb;// Ajuste o pacote conforme o seu projeto
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

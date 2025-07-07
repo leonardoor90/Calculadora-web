@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.leonardocalculator</groupId>
-	<artifactId>Calculadora-web</artifactId>
+	<artifactId>Calculadoraweb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Calculadora-web</name>
 	<description>Calculadora Web para Portfolio</description>

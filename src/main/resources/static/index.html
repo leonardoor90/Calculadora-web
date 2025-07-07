@@ -8,107 +8,171 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <style>
-        /* Seus estilos CSS personalizados */
+        /* Estilos CSS Base */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Fonte mais moderna */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #f8f9fa; /* Fundo mais claro do Bootstrap */
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%); /* Gradiente de fundo */
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+            color: #f8f9fa; /* Cor do texto principal (branco/claro) */
         }
 
-        /* Remova ou ajuste os estilos que o Bootstrap já cobre */
         h1 {
-            color: #212529; /* Cor de texto padrão do Bootstrap */
-            margin-bottom: 10px;
+            color: #ffffff; /* Título branco */
+            margin-bottom: 15px; /* Aumenta um pouco o espaçamento */
             text-align: center;
+            font-weight: 700; /* Negrito */
+            letter-spacing: 0.5px; /* Espaçamento entre letras */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra no título */
         }
 
         p {
-            color: #495057; /* Cor de texto secundária do Bootstrap */
-            text-align: justify;
-            max-width: 600px;
-            margin-bottom: 30px;
-            line-height: 1.6;
+            color: #e2e6ea; /* Parágrafo um pouco mais escuro que o título */
+            text-align: center; /* Centraliza o parágrafo */
+            max-width: 700px; /* Aumenta a largura máxima do parágrafo */
+            margin-bottom: 40px; /* Mais espaço entre o texto e a calculadora */
+            line-height: 1.8; /* Melhora a legibilidade */
+            font-size: 1.1em; /* Fonte um pouco maior */
         }
 
-        /* Estilos da Calculadora - alguns serão ajustados com classes Bootstrap */
-        .calculadora {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            /* REMOVA ESTA LINHA: width: 300px; */
-            max-width: 320px; /* Define uma largura máxima para que não fique muito grande em telas grandes */
-            width: 90%; /* A calculadora ocupará 90% da largura da tela, mas não mais que 320px */
-            margin-top: 20px;
-            }
-        .display {
-            width: 100%; /* O Bootstrap fará o padding */
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 2em;
-            text-align: right;
-            border: 1px solid #ced4da; /* Borda mais neutra do Bootstrap */
-            border-radius: 0.25rem; /* Borda padrão do Bootstrap */
-            box-sizing: border-box;
+        /* Estrutura do Conteúdo Principal */
+        .content-wrapper {
+            background-color: rgba(255, 255, 255, 0.1); /* Fundo translúcido para a seção de texto */
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px; /* Espaço antes da calculadora */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra mais suave */
+            backdrop-filter: blur(5px); /* Efeito de blur no fundo (moderno) */
+            -webkit-backdrop-filter: blur(5px); /* Compatibilidade Safari */
         }
+
+        /* Estilos da Calculadora */
+        .calculadora {
+            background-color: #343a40; /* Fundo escuro para a calculadora */
+            padding: 25px; /* Um pouco mais de padding interno */
+            border-radius: 12px; /* Bordas mais arredondadas */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); /* Sombra mais proeminente */
+            max-width: 340px; /* Levemente mais larga */
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+        }
+
+        .display {
+            width: 100%;
+            margin-bottom: 20px; /* Mais espaço abaixo do display */
+            padding: 15px; /* Mais padding no display */
+            font-size: 2.5em; /* Fonte maior no display */
+            text-align: right;
+            border: 1px solid #4f5b66; /* Borda mais escura */
+            border-radius: 8px; /* Bordas arredondadas */
+            background-color: #212529; /* Fundo do display bem escuro */
+            color: #00ff00; /* Cor verde neon para o texto do display (clássico de calculadora) */
+            box-shadow: inset 0 0 8px rgba(0, 255, 0, 0.3); /* Sombra interna para efeito de display */
+            outline: none; /* Remove a borda de foco padrão */
+        }
+
         .botoes {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            gap: 12px; /* Aumenta o espaçamento entre os botões */
         }
-        /* Os botões serão estilizados principalmente pelas classes Bootstrap */
+
         .botoes button {
             width: 100%;
-            padding: 15px;
-            font-size: 1.2em;
-            border: none; /* O Bootstrap cuida das bordas */
-            border-radius: 0.25rem;
+            padding: 18px; /* Mais padding nos botões */
+            font-size: 1.3em; /* Fonte um pouco maior nos botões */
+            border: none;
+            border-radius: 8px; /* Bordas arredondadas nos botões */
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.2s ease-in-out; /* Transição mais suave para hover */
+            font-weight: 600; /* Negrito nos botões */
+            color: #f8f9fa; /* Cor do texto do botão */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra nos botões */
         }
-        /* Manter cores personalizadas se desejar, ou usar as do Bootstrap */
+
+        .botoes button:hover {
+            transform: translateY(-2px); /* Efeito de "levantar" no hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Cores dos botões customizadas (mantendo a base Bootstrap mas com tons mais ricos) */
+        .btn-secondary {
+            background-color: #6c757d; /* Cinza médio */
+        }
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-warning {
+            background-color: #ffc107; /* Amarelo Bootstrap */
+            color: #212529; /* Texto escuro no amarelo */
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+
+        .btn-success {
+            background-color: #28a745; /* Verde Bootstrap */
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-danger {
+            background-color: #dc3545; /* Vermelho Bootstrap */
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        /* Cores específicas para operadores se desejar manter sobreposição */
         .botoes .operador {
-            background-color: #ff9800; /* Laranja */
+            background-color: #ff9800; /* Laranja mais vibrante */
             color: white;
         }
         .botoes .operador:hover {
             background-color: #e68900;
         }
+
         .botoes .igual {
-            background-color: #28a745; /* Verde do Bootstrap (success) */
+            background-color: #4CAF50; /* Verde mais intenso */
             color: white;
-            grid-column: span 2;
         }
         .botoes .igual:hover {
-            background-color: #218838;
+            background-color: #45a049;
         }
+
         .botoes .clear {
-            background-color: #dc3545; /* Vermelho do Bootstrap (danger) */
+            background-color: #f44336; /* Vermelho vivo */
             color: white;
         }
         .botoes .clear:hover {
-            background-color: #c82333;
+            background-color: #da190b;
         }
+
     </style>
 </head>
 <body>
     <div class="container text-center py-4">
-        <h1 class="mb-3">Construindo uma Calculadora Web com Java e Spring Boot</h1>
-        <p class="lead mb-4">
-            Este projeto demonstra a criação de uma calculadora interativa baseada na web, combinando um frontend intuitivo com um backend robusto em Java. A interface da calculadora é desenvolvida utilizando **HTML** e **CSS** para a estrutura e o estilo visual dos botões e do display. A lógica de interação inicial, como a captura dos números e operações digitadas, é gerenciada por **JavaScript** no navegador do usuário. No entanto, o verdadeiro poder de processamento reside no backend Java.
-        </p>
-        <p class="lead mb-4">
-            A comunicação entre o navegador e o servidor é estabelecida através de um **endpoint REST** implementado com **Spring Boot**. Quando o usuário clica no botão de igual (`=`), a expressão matemática é enviada do frontend para o backend Java via uma requisição HTTP **POST**. O servidor Spring Boot recebe essa expressão, realiza o cálculo utilizando lógica Java pura e, então, envia o resultado de volta para o navegador, que o exibe na tela da calculadora. Essa arquitetura separa claramente a apresentação (frontend) da lógica de negócios (backend), permitindo que cada parte seja desenvolvida e escalada de forma independente.
-        </p>
+        <div class="content-wrapper mb-5">
+            <h1 class="mb-3">Construindo uma Calculadora Web com Java e Spring Boot</h1>
+            <p class="lead">
+                Este projeto apresenta uma **calculadora web moderna e interativa**, desenvolvida para ser **responsiva** e se adaptar perfeitamente a qualquer tela, de celulares a monitores de desktop. Ela combina um frontend intuitivo com um backend robusto em Java. A interface do usuário é construída com **HTML** para a estrutura, estilizada com **CSS** para um visual agradável e dinâmico (incluindo efeitos visuais e um design que lembra o Material Design), e ganha interatividade através do **JavaScript**.
+            </p>
+            <p class="lead">
+                A **lógica de cálculo** é processada de forma inteligente: o JavaScript no navegador gerencia a entrada de dados, garantindo uma **usabilidade aprimorada** ao substituir operadores quando digitados em sequência (por exemplo, `5++` vira `5+`). A comunicação com o servidor é feita por um **endpoint REST** implementado com **Spring Boot**. Quando o botão de igual (`=`) é clicado, a expressão é enviada ao backend, onde uma **biblioteca de parsing de expressões em Java (`exp4j`)** avalia o cálculo de forma robusta e precisa, incluindo a ordem das operações e tratamento de erros. O resultado é então enviado de volta ao frontend para exibição instantânea. Essa arquitetura desacoplada permite que o frontend e o backend evoluam de forma independente, resultando em uma aplicação eficiente e de fácil manutenção.
+            </p>
+        </div>
 
-        <div class="d-flex justify-content-center"> <div class="card calculadora"> <div class="card-body">
+        <div class="d-flex justify-content-center">
+            <div class="card calculadora">
+                <div class="card-body">
                     <input type="text" class="form-control display mb-3" id="display" readonly>
                     <div class="botoes">
                         <button class="btn btn-secondary" onclick="appendToDisplay('7')">7</button>
@@ -136,7 +200,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
@@ -145,8 +209,35 @@
     let currentInput = '';
     let lastResult = null;
 
+    // Define uma lista de operadores para fácil verificação
+    const operadores = ['+', '-', '*', '/'];
+
     function appendToDisplay(value) {
-        currentInput += value;
+        // Verifica se o valor a ser adicionado é um operador
+        const isOperator = operadores.includes(value);
+
+        // Verifica se a entrada atual não está vazia
+        if (currentInput.length > 0) {
+            // Pega o último caractere da entrada atual
+            const lastChar = currentInput.slice(-1);
+            // Verifica se o último caractere é um operador
+            const lastCharIsOperator = operadores.includes(lastChar);
+
+            // Lógica de substituição:
+            // Se o valor a ser adicionado é um operador E o último caractere já é um operador,
+            // então substitui o último caractere.
+            if (isOperator && lastCharIsOperator) {
+                currentInput = currentInput.slice(0, -1) + value; // Remove o último e adiciona o novo
+            } else {
+                // Caso contrário (não é operador, ou o último caractere não é operador), apenas anexa
+                currentInput += value;
+            }
+        } else {
+            // Se a entrada está vazia, apenas anexa o valor (permitindo começar com número ou operador válido)
+            // Você pode adicionar uma validação aqui para não começar com certos operadores como '*' ou '/'
+            currentInput += value;
+        }
+
         display.value = currentInput;
     }
 
@@ -168,20 +259,34 @@
                 body: JSON.stringify({ expressao: currentInput })
             });
 
-            // O status HTTP 200 OK significa que a requisição chegou no backend
-            // Mas o backend pode ter retornado um erro de cálculo via JSON.
-            const data = await response.json();
+            console.log('Resposta bruta do servidor:', response);
+            const responseText = await response.text();
+            console.log('Corpo da resposta (texto):', responseText);
 
-            if (data.erro) { // Verifica se há uma mensagem de erro no JSON de resposta
-                display.value = 'Erro: ' + data.erro; // Exibe o erro do backend
-                currentInput = ''; // Limpa a entrada após o erro
-            } else {
+            let data;
+            try {
+                data = JSON.parse(responseText);
+                console.log('Corpo da resposta (JSON parseado):', data);
+            } catch (jsonError) {
+                console.error('Erro ao parsear JSON da resposta:', jsonError);
+                display.value = 'Erro: Resposta inválida do servidor';
+                currentInput = '';
+                return;
+            }
+
+            if (data.erro) {
+                display.value = 'Erro: ' + data.erro;
+                currentInput = '';
+            } else if (typeof data.resultado !== 'undefined') {
                 display.value = data.resultado;
                 currentInput = data.resultado.toString();
+            } else {
+                display.value = 'Erro: Resposta inesperada';
+                currentInput = '';
+                console.error('Estrutura de resposta inesperada:', data);
             }
 
         } catch (error) {
-            // Este catch lida com erros de rede ou de parsing do JSON, não erros do backend.
             display.value = 'Erro de comunicação';
             currentInput = '';
             console.error('Erro na comunicação com a API:', error);
