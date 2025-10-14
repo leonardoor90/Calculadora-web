@@ -2,6 +2,8 @@
 Status do Projeto
 
 ✅ Concluído | 🌐 Acesse: https://calculadora-backend-161579150165.us-central1.run.app/ 
+
+
 💻 Visão Geral
 
 Este projeto é uma demonstração de uma arquitetura Full Stack moderna e escalável, projetada para processar cálculos complexos. Ele utiliza o Frontend interativo do Firebase para se comunicar com um Backend robusto construído em Java/Spring Boot e implantado de forma serverless no Google Cloud Run.
